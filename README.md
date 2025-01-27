@@ -1,15 +1,20 @@
-
-This is a RESTful API for a restaurant management system built using Node.js, Express.js, and MongoDB. It provides functionality for user authentication, menu management, and order management.
+Restaurant Management System
+A RESTful API for managing restaurant operations, built using Node.js, Express.js, and MongoDB. It provides user authentication, menu management, and order management features.
 
 Features
-Authentication:
-Register users and login with JWT-based authentication.
-Menu Management:
+Authentication
+
+User registration and login using JWT-based authentication.
+Menu Management
+
 Add, update, delete, and fetch menu items.
-Order Management:
+Order Management
+
 Place orders and view orders by user.
-Validation:
-Input validation for required fields and error handling for invalid data.
+Validation
+
+Input validation for required fields.
+Error handling for invalid data.
 Tech Stack
 Backend: Node.js, Express.js
 Database: MongoDB (Atlas or local)
@@ -34,7 +39,7 @@ bash
 Copy
 Edit
 npm install
-Set Up Environment Variables: Create a .env file in the root directory and add the following:
+Set Up Environment Variables: Create a .env file in the root directory and configure the following:
 
 makefile
 Copy
@@ -42,7 +47,7 @@ Edit
 PORT=5000
 MONGO_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret
-Replace your_mongo_connection_string with your MongoDB Atlas URI or local MongoDB URI, and your_jwt_secret with a secure key.
+Replace your_mongo_connection_string with your MongoDB connection string and your_jwt_secret with a secure key.
 
 Run the Server:
 
@@ -212,9 +217,11 @@ project/
 └── .env               # Environment variables
 Validation & Error Handling
 Validation:
+
 Ensure all required fields are present in the request.
 Reject invalid data with meaningful error messages.
 Error Handling:
+
 Gracefully handle server errors with proper status codes.
 Return 404 if requested resources (e.g., menu item, order) are not found.
 Future Enhancements
