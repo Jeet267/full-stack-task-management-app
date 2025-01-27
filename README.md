@@ -1,106 +1,114 @@
-Restaurant Management System
+# Restaurant Management System
+
 A RESTful API for managing restaurant operations, built using Node.js, Express.js, and MongoDB. It provides user authentication, menu management, and order management features.
 
-Features
-Authentication
+## Features
 
-User registration and login using JWT-based authentication.
-Menu Management
+### Authentication
+- User registration and login using JWT-based authentication
 
-Add, update, delete, and fetch menu items.
-Order Management
+### Menu Management
+- Add, update, delete, and fetch menu items
 
-Place orders and view orders by user.
-Validation
+### Order Management
+- Place orders and view orders by user
 
-Input validation for required fields.
-Error handling for invalid data.
-Tech Stack
-Backend: Node.js, Express.js
-Database: MongoDB (Atlas or local)
-Authentication: JWT
-Schema Management: Mongoose
-Installation and Setup
-Prerequisites
-Node.js (v16+ recommended)
-MongoDB Atlas account or local MongoDB instance
-npm or yarn package manager
-Steps
-Clone the Repository:
+### Validation
+- Input validation for required fields
+- Error handling for invalid data
 
-bash
-Copy
-Edit
-git clone https://github.com/your-repo-name.git
-cd your-repo-name
-Install Dependencies:
+## Tech Stack
 
-bash
-Copy
-Edit
-npm install
-Set Up Environment Variables: Create a .env file in the root directory and configure the following:
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Atlas or local)
+- **Authentication**: JWT
+- **Schema Management**: Mongoose
 
-makefile
-Copy
-Edit
-PORT=5000
-MONGO_URI=your_mongo_connection_string
-JWT_SECRET=your_jwt_secret
-Replace your_mongo_connection_string with your MongoDB connection string and your_jwt_secret with a secure key.
+## Installation and Setup
 
-Run the Server:
+### Prerequisites
 
-bash
-Copy
-Edit
-npm start
-The server will start on http://localhost:5000 by default.
+- Node.js (v16+ recommended)
+- MongoDB Atlas account or local MongoDB instance
+- npm or yarn package manager
 
-API Endpoints
-Authentication
-Register a User
+### Steps
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**
+   
+   Create a `.env` file in the root directory and configure the following:
+   ```
+   PORT=5000
+   MONGO_URI=your_mongo_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
+   Replace `your_mongo_connection_string` with your MongoDB connection string and `your_jwt_secret` with a secure key.
+
+4. **Run the Server**
+   ```bash
+   npm start
+   ```
+   The server will start on `http://localhost:5000` by default.
+
+## API Endpoints
+
+### Authentication
+
+#### Register a User
+```http
 POST /api/auth/register
-Request Body:
-
-json
-Copy
-Edit
+```
+**Request Body:**
+```json
 {
   "username": "test@gmail.com",
   "password": "testpassword"
 }
-Response:
+```
+**Response:**
+```json
+{
+  "message": "User registered successfully"
+}
+```
 
-json
-Copy
-Edit
-{ "message": "User registered successfully" }
-Login a User
+#### Login a User
+```http
 POST /api/auth/login
-Request Body:
-
-json
-Copy
-Edit
+```
+**Request Body:**
+```json
 {
   "username": "test@gmail.com",
   "password": "testpassword"
 }
-Response:
+```
+**Response:**
+```json
+{
+  "token": "your_jwt_token"
+}
+```
 
-json
-Copy
-Edit
-{ "token": "your_jwt_token" }
-Menu Management
-Fetch All Menu Items
+### Menu Management
+
+#### Fetch All Menu Items
+```http
 GET /api/menu
-Response:
-
-json
-Copy
-Edit
+```
+**Response:**
+```json
 [
   {
     "_id": "menu_item_id",
@@ -110,67 +118,75 @@ Edit
     "availability": true
   }
 ]
-Add a Menu Item
-POST /api/menu/add
-Request Body:
+```
 
-json
-Copy
-Edit
+#### Add a Menu Item
+```http
+POST /api/menu/add
+```
+**Request Body:**
+```json
 {
   "name": "Pizza",
   "category": "Main Course",
   "price": 12.99,
   "availability": true
 }
-Response:
+```
+**Response:**
+```json
+{
+  "message": "Menu item added successfully"
+}
+```
 
-json
-Copy
-Edit
-{ "message": "Menu item added successfully" }
-Update a Menu Item
+#### Update a Menu Item
+```http
 PUT /api/menu/update/:id
-Request Body:
-
-json
-Copy
-Edit
+```
+**Request Body:**
+```json
 {
   "price": 14.99
 }
-Response:
+```
+**Response:**
+```json
+{
+  "message": "Menu item updated successfully"
+}
+```
 
-json
-Copy
-Edit
-{ "message": "Menu item updated successfully" }
-Delete a Menu Item
+#### Delete a Menu Item
+```http
 DELETE /api/menu/delete/:id
-Response:
+```
+**Response:**
+```json
+{
+  "message": "Menu item deleted successfully"
+}
+```
 
-json
-Copy
-Edit
-{ "message": "Menu item deleted successfully" }
-Order Management
-Place an Order
+### Order Management
+
+#### Place an Order
+```http
 POST /api/order
-Request Body:
-
-json
-Copy
-Edit
+```
+**Request Body:**
+```json
 {
   "items": [
-    { "menuItem": "menu_item_id", "quantity": 2 }
+    {
+      "menuItem": "menu_item_id",
+      "quantity": 2
+    }
   ]
 }
-Response:
-
-json
-Copy
-Edit
+```
+**Response:**
+```json
 {
   "message": "Order placed successfully",
   "order": {
@@ -178,26 +194,34 @@ Edit
     "totalAmount": 25.98
   }
 }
-Fetch Orders for Logged-in User
-GET /api/orders
-Response:
+```
 
-json
-Copy
-Edit
+#### Fetch Orders for Logged-in User
+```http
+GET /api/orders
+```
+**Response:**
+```json
 [
   {
     "_id": "order_id",
     "items": [
-      { "menuItem": { "name": "Pizza", "price": 12.99 }, "quantity": 2 }
+      {
+        "menuItem": {
+          "name": "Pizza",
+          "price": 12.99
+        },
+        "quantity": 2
+      }
     ],
     "totalAmount": 25.98
   }
 ]
-Project Structure
-bash
-Copy
-Edit
+```
+
+## Project Structure
+
+```
 project/
 ├── models/
 │   ├── User.js        # User model
@@ -215,20 +239,26 @@ project/
 ├── server.js          # Server entry point
 ├── package.json       # Dependencies and scripts
 └── .env               # Environment variables
-Validation & Error Handling
-Validation:
+```
 
-Ensure all required fields are present in the request.
-Reject invalid data with meaningful error messages.
-Error Handling:
+## Validation & Error Handling
 
-Gracefully handle server errors with proper status codes.
-Return 404 if requested resources (e.g., menu item, order) are not found.
-Future Enhancements
-Add role-based access for admin users to manage the menu.
-Include real-time order tracking.
-Implement unit and integration tests.
-License
+### Validation
+- Ensure all required fields are present in the request
+- Reject invalid data with meaningful error messages
+
+### Error Handling
+- Gracefully handle server errors with proper status codes
+- Return 404 if requested resources (e.g., menu item, order) are not found
+
+## Future Enhancements
+
+- Add role-based access for admin users to manage the menu
+- Include real-time order tracking
+- Implement unit and integration tests
+
+## License
+
 This project is licensed under the MIT License.
 
 Feel free to contribute and create pull requests! 🎉
